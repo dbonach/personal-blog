@@ -1,12 +1,20 @@
 package com.generation.blog.entities;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_posts")
@@ -15,25 +23,37 @@ public class BlogPost {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotNull
+	@Size(min = 1, max = 100)
 	private String title;
+	
+	@NotNull
+	@Size(min = 10, max = 500)
 	private String content;
-	private LocalDate date;
 	
-	public BlogPost() {
-	}
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date = new java.sql.Date(System.currentTimeMillis());
 	
-	public BlogPost(String title, String content, LocalDate date) {
-		this.title = title;
-		this.content = content;
-		this.date = date;
-	}
+	@ManyToOne
+	@JoinColumn(name = "theme_id")
+	@JsonIgnoreProperties("blogPosts")
+	private BlogPostTheme theme;
 	
-	public BlogPost(Long id, String title, String content, LocalDate date) {
-		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.date = date;
-	}
+//	public BlogPost() {
+//	}
+//	
+//	public BlogPost(String title, String content) {
+//		this.title = title;
+//		this.content = content;
+//	}
+//	
+//	public BlogPost(Long id, String title, String content, BlogPostTheme theme) {
+//		this.id = id;
+//		this.title = title;
+//		this.content = content;
+//		this.theme = theme;
+//	}
 
 	public Long getId() {
 		return id;
@@ -53,10 +73,16 @@ public class BlogPost {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
+	}
+	public BlogPostTheme getTheme() {
+		return theme;
+	}
+	public void setTheme(BlogPostTheme theme) {
+		this.theme = theme;
 	}
 }
