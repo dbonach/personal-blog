@@ -40,7 +40,7 @@ public class BlogPostThemeController {
 	
 	@GetMapping("/name/{name}")
 	public ResponseEntity<List<BlogPostTheme>> getThemeByName(@PathVariable String name) {
-		return ResponseEntity.ok(blogPostThemeRepository.findAllByDescriptionContainingIgnoreCase(name));
+		return ResponseEntity.ok(blogPostThemeRepository.findAllByNameContainingIgnoreCase(name));
 	}
 	
 	@PostMapping

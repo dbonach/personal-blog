@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,9 +25,9 @@ public class BlogPostTheme {
 	
 	@NotNull
 	@Size(min = 1, max = 200)
-	private String description;
+	private String name;
 	
-	@OneToMany(mappedBy = "theme", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "theme", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnoreProperties("theme")
 	private List<BlogPost> blogPosts;
 	
@@ -47,12 +48,12 @@ public class BlogPostTheme {
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<BlogPost> getBlogPosts() {
