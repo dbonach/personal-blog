@@ -40,20 +40,8 @@ public class BlogPost {
 	@JsonIgnoreProperties("blogPosts")
 	private BlogPostTheme theme;
 	
-//	public BlogPost() {
-//	}
-//	
-//	public BlogPost(String title, String content) {
-//		this.title = title;
-//		this.content = content;
-//	}
-//	
-//	public BlogPost(Long id, String title, String content, BlogPostTheme theme) {
-//		this.id = id;
-//		this.title = title;
-//		this.content = content;
-//		this.theme = theme;
-//	}
+	public BlogPost() {
+	}
 
 	public Long getId() {
 		return id;

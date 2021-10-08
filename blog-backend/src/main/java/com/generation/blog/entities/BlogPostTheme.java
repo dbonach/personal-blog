@@ -31,14 +31,8 @@ public class BlogPostTheme {
 	@JsonIgnoreProperties("theme")
 	private List<BlogPost> blogPosts;
 	
-//	public BlogPostTheme() {
-//	}
-//
-//	public BlogPostTheme(Long id, @NotNull String description, List<BlogPost> blogPosts) {
-//		this.id = id;
-//		this.description = description;
-//		this.blogPosts = blogPosts;
-//	}
+	public BlogPostTheme() {
+	}
 
 	public Long getId() {
 		return id;
