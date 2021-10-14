@@ -1,12 +1,18 @@
 package com.generation.blog.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_user")
@@ -19,13 +25,28 @@ public class User {
 	@NotNull
 	@Size(min = 2, max = 100)
 	private String name;
+	
 	@NotNull
 	@Size(min = 2, max = 100)
 	private String user;
 	
 	@NotNull
-	@Size(min = 1, max = 255)
+	@Size(min = 8, max = 255)
 	private String hashcode;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("user")
+	private List<BlogPost> blogPosts;
+	
+	public User() {
+	}
+
+	public User(Long id, String name, String user, String hashcode) {
+		this.id = id;
+		this.name = name;
+		this.user = user;
+		this.hashcode = hashcode;
+	}
 
 	public Long getId() {
 		return id;
