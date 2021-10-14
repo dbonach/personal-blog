@@ -36,6 +36,11 @@ public class BlogPost {
 	private Date date = new java.sql.Date(System.currentTimeMillis());
 	
 	@ManyToOne
+	@JoinColumn(name = "user_id")
+	@JsonIgnoreProperties("blogPosts")
+	private User user;
+	
+	@ManyToOne
 	@JoinColumn(name = "theme_id")
 	@JsonIgnoreProperties("blogPosts")
 	private BlogPostTheme theme;
