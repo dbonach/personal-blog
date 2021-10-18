@@ -44,17 +44,17 @@ public class BlogPostThemeController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<BlogPostTheme> post(@RequestBody BlogPostTheme theme) {
+	public ResponseEntity<BlogPostTheme> createTheme(@RequestBody BlogPostTheme theme) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(blogPostThemeRepository.save(theme));
 	}
 	
 	@PutMapping
-	public ResponseEntity<BlogPostTheme> put(@RequestBody BlogPostTheme theme) {
+	public ResponseEntity<BlogPostTheme> updateTheme(@RequestBody BlogPostTheme theme) {
 		return ResponseEntity.ok(blogPostThemeRepository.save(theme));
 	}
 	
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long id) {
+	public void deleteTheme(@PathVariable Long id) {
 		blogPostThemeRepository.deleteById(id);
 	}
 }

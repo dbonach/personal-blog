@@ -32,19 +32,19 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<UserLogin> autentication(@RequestBody Optional<UserLogin> user) {
+	public ResponseEntity<UserLogin> logUser(@RequestBody Optional<UserLogin> user) {
 		return userService.login(user).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
 	@PostMapping("/registration")
-	public ResponseEntity<User> post(@RequestBody User user) {
+	public ResponseEntity<User> registerUser(@RequestBody User user) {
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(userService.userRegistration(user));
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<User> putUsuario(@RequestBody User user){
+	public ResponseEntity<User> updateUserInfo(@RequestBody User user){
 		
 		return userService.updateUser(user)
 			.map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
