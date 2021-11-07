@@ -39,6 +39,10 @@ public class User {
 	@Size(min = 8, max = 255)
 	private String hashcode;
 	
+	private String photoUri;
+	
+	private String userType;
+	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("user")
 	private List<BlogPost> blogPosts;
@@ -83,5 +87,21 @@ public class User {
 
 	public void setHashcode(String hashcode) {
 		this.hashcode = hashcode;
+	}
+
+	public String getPhotoUri() {
+		return photoUri;
+	}
+
+	public void setPhotoUri(String photoUri) {
+		this.photoUri = photoUri;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 }
